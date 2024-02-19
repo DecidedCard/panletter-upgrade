@@ -16,8 +16,13 @@ function Login() {
       id,
       password,
     };
-    const { data } = await login(checkUser);
-    localStorage.setItem("accessToken", data.accessToken);
+    try {
+      const { data } = await login(checkUser);
+      localStorage.setItem("accessToken", data.accessToken);
+    } catch (error) {
+      console.error(error);
+    }
+
     navigate("/");
   };
   return (

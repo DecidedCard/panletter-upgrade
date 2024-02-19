@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { checkUser } from "api/fetchJWT";
 
 const initialState = {
-  user: null,
+  user: {},
 };
 
 const check = localStorage.getItem("accessToken");
@@ -11,9 +11,13 @@ const check = localStorage.getItem("accessToken");
 export const __initialization = createAsyncThunk(
   "initialization",
   async (payload, thunkAPI) => {
-    const response = await checkUser(check);
-    console.log(response.response);
-    thunkAPI.dispatch(response);
+    try {
+      const response = await checkUser(check);
+      thunkAPI.fulfillWithValue();
+    } catch (error) {
+      console.error(error);
+      thunkAPI.rejectWithValue();
+    }
   }
 );
 

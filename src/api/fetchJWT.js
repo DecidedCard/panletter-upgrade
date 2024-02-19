@@ -5,6 +5,7 @@ export const signup = async (data) => {
     const response = await api.post(`/register`, data);
     return response;
   } catch (error) {
+    console.error(error);
     return error;
   }
 };
@@ -14,6 +15,7 @@ export const login = async (data) => {
     const response = await api.post("/login", data);
     return response;
   } catch (error) {
+    console.error(error);
     return error;
   }
 };
@@ -28,6 +30,7 @@ export const checkUser = async (accessToken) => {
     });
     return response;
   } catch (error) {
+    console.error(error);
     return error;
   }
 };

@@ -12,6 +12,7 @@ instance.interceptors.request.use(
 
   // 오류 요청을 보내기 전 수행되는 함수
   function (error) {
+    console.error(error);
     return Promise.reject(error);
   }
 );
@@ -24,6 +25,7 @@ instance.interceptors.response.use(
 
   // 오류응답을 내보내기 전 수행되는 함수
   function (error) {
+    console.error(error);
     return Promise.reject(error);
   }
 );

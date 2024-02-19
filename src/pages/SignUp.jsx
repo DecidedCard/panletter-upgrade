@@ -18,7 +18,11 @@ function Signup() {
       password,
       nickname,
     };
-    await signup(newUser);
+    try {
+      await signup(newUser);
+    } catch (error) {
+      console.error(error);
+    }
     navigate("/login");
   };
   return (

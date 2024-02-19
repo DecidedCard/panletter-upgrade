@@ -10,6 +10,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(__initialization());
+    console.log(user);
   }, []);
 
   return (
