@@ -2,30 +2,53 @@ import React from "react";
 import Button from "components/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import useInput from "hooks/useInput";
+import { login } from "api/fetchJWT";
 
 function Login() {
   const navigate = useNavigate();
+  const [id, onChangeIdHandler] = useInput();
+  const [password, onChangePasswordHandler] = useInput();
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const checkUser = {
+      id,
+      password,
+    };
+    const { data } = await login(checkUser);
+    localStorage.setItem("accessToken", data.accessToken);
+    navigate("/");
+  };
   return (
-    <div>
-      <LoginMain>
-        <LoginContainer>
-          <h1>로그인</h1>
-          <LoginInput>
-            <Input type="text" placeholder="아이디를 입력해 주세요" />
-            <Input type="password" placeholder="비밀번호를 입력해 주세요" />
-          </LoginInput>
-          <div>
-            <Button type="submit" content={"로그인"} />
-            <Button
-              type="click"
-              content={"회원가입"}
-              width={"80"}
-              onClick={() => navigate("/signup")}
-            />
-          </div>
-        </LoginContainer>
-      </LoginMain>
-    </div>
+    <LoginMain>
+      <LoginContainer onSubmit={onSubmitHandler}>
+        <h1>로그인</h1>
+        <LoginInput>
+          <Input
+            type="text"
+            placeholder="아이디를 입력해 주세요"
+            value={id}
+            onChange={onChangeIdHandler}
+          />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해 주세요"
+            value={password}
+            onChange={onChangePasswordHandler}
+          />
+        </LoginInput>
+        <div>
+          <Button type="submit" content={"로그인"} />
+          <Button
+            type="click"
+            content={"회원가입"}
+            width={"80"}
+            onClick={() => navigate("/signup")}
+          />
+        </div>
+      </LoginContainer>
+    </LoginMain>
   );
 }
 
@@ -38,7 +61,7 @@ const LoginMain = styled.main`
   height: 90vh;
 `;
 
-const LoginContainer = styled.div`
+const LoginContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

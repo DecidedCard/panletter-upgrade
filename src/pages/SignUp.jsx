@@ -1,42 +1,74 @@
+import { signup } from "api/fetchJWT";
 import Button from "components/Button";
+import useInput from "hooks/useInput";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-function SignUp() {
+function Signup() {
   const navigate = useNavigate();
+  const [nickname, onChangeNicknameHandler] = useInput();
+  const [id, onChangeIdHandler] = useInput();
+  const [password, onChangePasswordHandler] = useInput();
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const newUser = {
+      id,
+      password,
+      nickname,
+    };
+    await signup(newUser);
+    navigate("/login");
+  };
   return (
-    <SingUpMain>
-      <SignUpContainer>
+    <SingupMain>
+      <SignupContainer onSubmit={onSubmitHandler}>
         <h1>회원가입</h1>
-        <SignUpInput>
-          <Input type="text" placeholder="이름" />
-          <Input type="text" placeholder="아이디" />
-          <Input type="password" placeholder="비밀번호" />
-        </SignUpInput>
+        <SignupInput>
+          <Input
+            type="text"
+            placeholder="이름"
+            value={nickname}
+            onChange={onChangeNicknameHandler}
+          />
+          <Input
+            type="text"
+            placeholder="아이디"
+            value={id}
+            onChange={onChangeIdHandler}
+          />
+          <Input
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={onChangePasswordHandler}
+          />
+        </SignupInput>
         <div>
-          <Button content={"회원가입"} width={"80"} />
+          <Button type="submit" content={"회원가입"} width={"80"} />
           <Button
+            type="click"
             content={"로그인 페이지로"}
             width={"150"}
             onClick={() => navigate("/login")}
           />
         </div>
-      </SignUpContainer>
-    </SingUpMain>
+      </SignupContainer>
+    </SingupMain>
   );
 }
 
-export default SignUp;
+export default Signup;
 
-const SingUpMain = styled.main`
+const SingupMain = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
 `;
 
-const SignUpContainer = styled.div`
+const SignupContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +80,7 @@ const SignUpContainer = styled.div`
   border-radius: 8px;
 `;
 
-const SignUpInput = styled.div`
+const SignupInput = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

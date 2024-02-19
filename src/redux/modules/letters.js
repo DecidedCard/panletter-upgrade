@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const checkKey = localStorage.key(0);
+const checkKey = localStorage.key(1);
 const check = [];
-if (checkKey !== null) {
+if (checkKey) {
   check.push(...JSON.parse(localStorage.getItem(checkKey)));
 }
 

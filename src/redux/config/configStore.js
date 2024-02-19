@@ -2,6 +2,7 @@
 import letters from "../modules/letters";
 // import { devToolsEnhancer } from "redux-devtools-extension";
 import { configureStore } from "@reduxjs/toolkit";
+import user from "../modules/user";
 
 // const rootReducer = combineReducers({
 //   letters,
@@ -11,6 +12,7 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: {
     letters,
+    user,
   },
 });
 

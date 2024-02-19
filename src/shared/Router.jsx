@@ -2,7 +2,7 @@ import Detail from "pages/Detail";
 import Home from "pages/Home";
 import Letter from "pages/Letter";
 import Login from "pages/Login";
-import SignUp from "pages/SignUp";
+import Signup from "pages/Signup";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 const Router = () => {
@@ -13,7 +13,7 @@ const Router = () => {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="letter/:id" element={<Letter />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
