@@ -6,7 +6,7 @@ export const signup = async (data) => {
     return response;
   } catch (error) {
     console.error(error);
-    return error;
+    return Promise.reject(error);
   }
 };
 
@@ -16,7 +16,7 @@ export const login = async (data) => {
     return response;
   } catch (error) {
     console.error(error);
-    return error;
+    return Promise.reject(error);
   }
 };
 
@@ -31,6 +31,6 @@ export const checkUser = async (accessToken) => {
     return response;
   } catch (error) {
     console.error(error);
-    return error;
+    return Promise.reject(error);
   }
 };

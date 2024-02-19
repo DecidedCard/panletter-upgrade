@@ -3,20 +3,22 @@ import { checkUser } from "api/fetchJWT";
 
 const initialState = {
   user: {},
+  isLoading: false,
+  isError: false,
+  error: null,
 };
 
 const check = localStorage.getItem("accessToken");
 
-// 아직 다 작성 못 함.
 export const __initialization = createAsyncThunk(
   "initialization",
   async (payload, thunkAPI) => {
     try {
       const response = await checkUser(check);
-      thunkAPI.fulfillWithValue();
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       console.error(error);
-      thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -28,6 +30,22 @@ const userSilce = createSlice({
     initialization: (state, action) => {
       return { user: action.payload };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(__initialization.pending, (state, action) => {
+      state.isLoading = true;
+      state.isError = false;
+    });
+    builder.addCase(__initialization.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.user = action.payload;
+    });
+    builder.addCase(__initialization.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action.payload;
+    });
   },
 });
 
