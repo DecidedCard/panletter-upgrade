@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 function Home() {
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     dispatch(__initialization());

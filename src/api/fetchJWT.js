@@ -19,12 +19,15 @@ export const login = async (data) => {
 };
 
 export const checkUser = async (accessToken) => {
-  const response = await api.get("/user", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  console.log(response);
-  return response;
+  try {
+    const response = await api.get("/user", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
 };

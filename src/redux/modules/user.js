@@ -10,10 +10,10 @@ const check = localStorage.getItem("accessToken");
 // 아직 다 작성 못 함.
 export const __initialization = createAsyncThunk(
   "initialization",
-  (payload, thunkAPI) => {
-    console.log("실행됬습니다");
-    const response = checkUser(check);
-    console.log(response);
+  async (payload, thunkAPI) => {
+    const response = await checkUser(check);
+    console.log(response.response);
+    thunkAPI.dispatch(response);
   }
 );
 
