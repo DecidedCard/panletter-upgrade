@@ -6,41 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { data, artistData } from "shared/data";
 import styled from "styled-components";
 
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 700px;
-  height: auto;
-  //transient props($)를 사용하여 해결
-  background-image: url("${(props) => props.$backgroundImage}");
-  background-size: contain;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 90%;
-  height: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-color: rgb(112, 119, 161, 0.6);
-`;
-
-const Artist = styled.section`
-  display: flex;
-  min-width: 50%;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid black;
-  height: 40px;
-  margin: 5px;
-  background-color: rgb(112, 119, 161, 0.6);
-  padding: 5px;
-`;
-
 function Letter() {
   const params = useParams();
   const naviGate = useNavigate();
@@ -103,3 +68,38 @@ function Letter() {
 }
 
 export default Letter;
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 700px;
+  height: auto;
+  //transient props($)를 사용하여 해결
+  background-image: url("${(props) => props.$backgroundImage}");
+  background-size: contain;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  background-color: rgb(112, 119, 161, 0.6);
+`;
+
+const Artist = styled.section`
+  display: flex;
+  min-width: 50%;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  height: 40px;
+  margin: 5px;
+  background-color: rgb(112, 119, 161, 0.6);
+  padding: 5px;
+`;

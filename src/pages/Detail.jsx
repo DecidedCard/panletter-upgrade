@@ -7,6 +7,89 @@ import Button from "components/Button";
 import DeleteCheckModal from "components/Modal-Components/DeleteCheckModal";
 import { getFormattedDate } from "util/date";
 
+function Detail() {
+  // 모달창 조건에 따라 생겼다 사라졌다 하는 state
+  const [changeLetterModalOpen, setChangeLetterModalOpen] = useState(false);
+  const [deleteCheckModalOpen, setDeleteCheckModalOpen] = useState(false);
+
+  const letterList = useSelector((state) => state.letters.letterList);
+  const params = useParams();
+  const navigate = useNavigate();
+
+  // 상세페이지에 띄울 letter check
+  const letterCheck = letterList.find((i) => {
+    return params.id === i.id;
+  });
+
+  const [letter, setLetter] = useState(letterCheck);
+
+  // 이전페이지로 이동하기 위한 함수
+  function goBack() {
+    return navigate(-1);
+  }
+
+  const deleteCheckModalBtn = () => {
+    setDeleteCheckModalOpen(true);
+  };
+
+  const modalOpenBTN = () => {
+    setChangeLetterModalOpen(true);
+  };
+
+  return (
+    <>
+      <MainStyle>
+        <PageMove>
+          <Button content={"이전페이지"} onClick={goBack} width={"90"} />
+          <Button content={"HOME"} onClick={() => navigate("/")} />
+        </PageMove>
+        <main>
+          <p>당신의 팬레터</p>
+          <LetterDetail>
+            <div>
+              <LetterAvatar src={letter.avatar} alt="" />
+              <LetterName>{letter.name}</LetterName>
+              <LetterContent>{letter.letter}</LetterContent>
+            </div>
+            <LetterBtn>
+              <label>{letter.createDate}</label>
+              <Button
+                content={"삭제하기"}
+                onClick={() => deleteCheckModalBtn()}
+                backgroundColor={"#F6B17A"}
+                width={"80"}
+              />
+              <Button
+                content={"수정하기"}
+                onClick={modalOpenBTN}
+                width={"80"}
+              />
+            </LetterBtn>
+          </LetterDetail>
+          {changeLetterModalOpen && (
+            <ChangeLetterModal
+              letter={letter}
+              setLetter={setLetter}
+              letterList={letterList}
+              setChangeLetterModalOpen={setChangeLetterModalOpen}
+            />
+          )}
+          {deleteCheckModalOpen && (
+            <DeleteCheckModal
+              setDeleteCheckModalOpen={setDeleteCheckModalOpen}
+              goBack={goBack}
+              letterList={letterList}
+              letter={letter}
+            />
+          )}
+        </main>
+      </MainStyle>
+    </>
+  );
+}
+
+export default Detail;
+
 const MainStyle = styled.div`
   display: flex;
   flex-direction: column;
@@ -87,86 +170,3 @@ const LetterBtn = styled.div`
     margin-top: auto;
   }
 `;
-
-function Detail() {
-  // 모달창 조건에 따라 생겼다 사라졌다 하는 state
-  const [changeLetterModalOpen, setChangeLetterModalOpen] = useState(false);
-  const [deleteCheckModalOpen, setDeleteCheckModalOpen] = useState(false);
-
-  const letterList = useSelector((state) => state.letters.letterList);
-  const params = useParams();
-  const navigate = useNavigate();
-
-  // 상세페이지에 띄울 letter check
-  const letterCheck = letterList.filter((i) => {
-    return params.id === i.id;
-  });
-
-  const [letter, setLetter] = useState(letterCheck[0]);
-
-  // 이전페이지로 이동하기 위한 함수
-  function goBack() {
-    return navigate(-1);
-  }
-
-  const deleteCheckModalBtn = () => {
-    setDeleteCheckModalOpen(true);
-  };
-
-  const modalOpenBTN = () => {
-    setChangeLetterModalOpen(true);
-  };
-
-  return (
-    <>
-      <MainStyle>
-        <PageMove>
-          <Button content={"이전페이지"} onClick={goBack} width={"90"} />
-          <Button content={"HOME"} onClick={() => navigate("/")} />
-        </PageMove>
-        <main>
-          <p>당신의 팬레터</p>
-          <LetterDetail>
-            <div>
-              <LetterAvatar src={letter.avatar} alt="" />
-              <LetterName>{letter.name}</LetterName>
-              <LetterContent>{letter.letter}</LetterContent>
-            </div>
-            <LetterBtn>
-              <label>{getFormattedDate(letter.createDate)}</label>
-              <Button
-                content={"삭제하기"}
-                onClick={() => deleteCheckModalBtn()}
-                backgroundColor={"#F6B17A"}
-                width={"80"}
-              />
-              <Button
-                content={"수정하기"}
-                onClick={modalOpenBTN}
-                width={"80"}
-              />
-            </LetterBtn>
-          </LetterDetail>
-          {changeLetterModalOpen && (
-            <ChangeLetterModal
-              letter={letter}
-              setLetter={setLetter}
-              letterList={letterList}
-              setChangeLetterModalOpen={setChangeLetterModalOpen}
-            />
-          )}
-          {deleteCheckModalOpen && (
-            <DeleteCheckModal
-              setDeleteCheckModalOpen={setDeleteCheckModalOpen}
-              goBack={goBack}
-              letterList={letterList}
-              letter={letter}
-            />
-          )}
-        </main>
-      </MainStyle>
-    </>
-  );
-}
-
-export default Detail;

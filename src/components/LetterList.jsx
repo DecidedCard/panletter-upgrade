@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getFormattedDate } from "util/date";
+// import { getFormattedDate } from "util/date";
 
 function LetterList({ foundData, checkArtist }) {
   const letterList = useSelector((state) => state.letters.letterList);
@@ -29,7 +29,7 @@ function LetterList({ foundData, checkArtist }) {
                   <LetterAvatar src={i.avatar} alt="" />
                   <LetterName>{i.name}</LetterName>
                   <LetterContent>{i.letter}</LetterContent>
-                  <label>{getFormattedDate(i.createDate)}</label>
+                  <label>{i.createDate}</label>
                 </PanLetter>
               </Link>
             );

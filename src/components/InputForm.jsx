@@ -6,6 +6,7 @@ import CheckModal from "components/Modal-Components/CheckModal";
 import Button from "components/Button";
 import { v4 as uuidv4 } from "uuid";
 import { addLetterList } from "../redux/modules/letters";
+import { getFormattedDate } from "util/date";
 
 function InputForm({ foundData, foundArtist }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,7 +24,7 @@ function InputForm({ foundData, foundArtist }) {
     }
     const newLetter = {
       id: uuidv4(),
-      createDate: new Date(),
+      createDate: getFormattedDate(new Date()),
       title: foundData.artist,
       name: nameCheck,
       avatar: basicAvatar,

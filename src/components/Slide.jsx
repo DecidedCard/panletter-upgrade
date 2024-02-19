@@ -5,7 +5,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import { Component } from "react";
 import { imageData } from "shared/data";
 import styled from "styled-components";
 
