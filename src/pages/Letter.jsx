@@ -11,8 +11,9 @@ import Header from "components/Header";
 
 function Letter() {
   const params = useParams();
-  const naviGate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(__initialization());
@@ -31,6 +32,10 @@ function Letter() {
   const [backgroundImage, setBackgroundImage] = useState(
     artistList[0].backgroundImage
   );
+
+  if (error) {
+    return navigate("/login");
+  }
 
   // 이름을 클릭했을 때 backgroundColor를 변경
   const artistClick = (item) => {

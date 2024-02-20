@@ -1,8 +1,8 @@
-import api from "api/api";
+import jwt from "api/jwt";
 
 export const signup = async (data) => {
   try {
-    const response = await api.post(`/register`, data);
+    const response = await jwt.post(`/register`, data);
     return response;
   } catch (error) {
     console.error(error);
@@ -12,7 +12,7 @@ export const signup = async (data) => {
 
 export const login = async (data) => {
   try {
-    const response = await api.post("/login", data);
+    const response = await jwt.post("/login", data);
     return response;
   } catch (error) {
     console.error(error);
@@ -22,7 +22,7 @@ export const login = async (data) => {
 
 export const checkUser = async (accessToken) => {
   try {
-    const response = await api.get("/user", {
+    const response = await jwt.get("/user", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,

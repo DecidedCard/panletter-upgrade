@@ -1,39 +1,39 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import basicAvatar from "assets/image/basicavatar.jpg";
 import CheckModal from "components/Modal-Components/CheckModal";
 import Button from "components/Button";
 import { v4 as uuidv4 } from "uuid";
-import { addLetterList } from "../redux/modules/letters";
+import { __addLetterList } from "../redux/modules/letters";
 import { getFormattedDate } from "util/date";
 
 function InputForm({ foundData, foundArtist }) {
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const [artist, setArtist] = useState(foundArtist[0].name);
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
 
   // 등록 버튼
   const addBtn = (event) => {
     event.preventDefault();
-    const nameCheck = event.target.name.value;
     const letterCheck = event.target.letter.value;
-    if (!nameCheck || !letterCheck) {
+    if (!letterCheck) {
       setModalOpen(true);
       return;
     }
     const newLetter = {
       id: uuidv4(),
-      createDate: getFormattedDate(new Date()),
+      createdAt: getFormattedDate(new Date()),
       title: foundData.artist,
-      name: nameCheck,
-      avatar: basicAvatar,
-      letter: letterCheck,
-      artist,
+      nickname: user.nickname,
+      avatar: user.avatar,
+      content: letterCheck,
+      writedTo: artist,
+      userId: user.id,
     };
-    dispatch(addLetterList(newLetter));
+    dispatch(__addLetterList(newLetter));
     event.target.reset();
-    event.target.name.focus();
   };
 
   // selector에서 고른 아티스트 이름으로 저장
@@ -45,14 +45,9 @@ function InputForm({ foundData, foundArtist }) {
     <SectionStyle>
       <InputFormStyle onSubmit={addBtn}>
         <div>
-          <label>이름:</label>
-          <InputName
-            type="text"
-            placeholder="최대 20글자까지 작성할 수 있습니다."
-            maxLength={20}
-            autoFocus
-            name="name"
-          />
+          <InputName>
+            이름: <p>{user.nickname}</p>
+          </InputName>
         </div>
         <InputLetterDiv>
           <label>내용:</label>
@@ -106,13 +101,9 @@ const InputFormStyle = styled.form`
   margin: 5px;
 `;
 
-const InputName = styled.input`
-  border-radius: 5px;
-  border: none;
-  width: 300px;
-  height: 30px;
-  margin-left: 30px;
-  background-color: rgb(112, 119, 161, 0.7);
+const InputName = styled.label`
+  display: flex;
+  gap: 30px;
 `;
 
 const InputLetterDiv = styled.div`

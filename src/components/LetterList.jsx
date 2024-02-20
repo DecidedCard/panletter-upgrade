@@ -27,9 +27,9 @@ function LetterList({ foundData, checkArtist }) {
               >
                 <PanLetter>
                   <LetterAvatar src={i.avatar} alt="" />
-                  <LetterName>{i.name}</LetterName>
-                  <LetterContent>{i.letter}</LetterContent>
-                  <label>{i.createDate}</label>
+                  <LetterName>{i.nickname}</LetterName>
+                  <LetterContent>{i.content}</LetterContent>
+                  <label>{i.createdAt}</label>
                 </PanLetter>
               </Link>
             );
