@@ -8,11 +8,10 @@ const initialState = {
   error: null,
 };
 
-const check = localStorage.getItem("accessToken");
-
 export const __initialization = createAsyncThunk(
   "initialization",
   async (payload, thunkAPI) => {
+    const check = localStorage.getItem("accessToken");
     try {
       const response = await checkUser(check);
       return thunkAPI.fulfillWithValue(response.data);
