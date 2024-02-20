@@ -1,14 +1,22 @@
 import Button from "components/Button";
 import InputForm from "components/InputForm";
 import LetterList from "components/LetterList";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { __initialization } from "../redux/modules/user";
 import { data, artistData } from "shared/data";
 import styled from "styled-components";
+import Header from "components/Header";
 
 function Letter() {
   const params = useParams();
   const naviGate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__initialization());
+  }, []);
 
   const foundData = data.find((i) => {
     return i.id === parseInt(params.id);
@@ -40,14 +48,8 @@ function Letter() {
 
   return (
     <Main $backgroundImage={backgroundImage}>
-      <Header>
-        {foundData.artist}
-        <Button
-          content={"HOME"}
-          backgroundColor={"rgba(66, 71, 105, 0.7)"}
-          onClick={() => naviGate("/")}
-        />
-      </Header>
+      <Header />
+      <GroupName>{foundData.artist}</GroupName>
       <Artist>
         {artistList.map((e) => {
           return (
@@ -76,20 +78,20 @@ const Main = styled.main`
   align-items: center;
   min-height: 700px;
   height: auto;
-  //transient props($)를 사용하여 해결
   background-image: url("${(props) => props.$backgroundImage}");
   background-size: contain;
 `;
 
-const Header = styled.div`
+const GroupName = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 90%;
   height: 50px;
-  border: 1px solid black;
   margin: 5px;
-  background-color: rgb(112, 119, 161, 0.6);
+  background-color: rgb(112, 119, 161, 0.7);
+  border-radius: 8px;
+  font-size: 30px;
 `;
 
 const Artist = styled.section`
