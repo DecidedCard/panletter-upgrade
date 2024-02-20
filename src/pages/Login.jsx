@@ -19,11 +19,12 @@ function Login() {
     try {
       const { data } = await login(checkUser);
       localStorage.setItem("accessToken", data.accessToken);
+      setTimeout(() => {
+        navigate("/");
+      }, 400);
     } catch (error) {
       console.error(error);
     }
-
-    navigate("/");
   };
   return (
     <LoginMain>
