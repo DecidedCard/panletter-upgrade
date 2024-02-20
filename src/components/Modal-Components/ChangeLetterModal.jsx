@@ -4,19 +4,13 @@ import ChangeLetterCheckModal from "components/Modal-Components/ChangeLetterChec
 import Button from "components/Button";
 
 function ChangeLetterModal({
-  letter,
-  setLetter,
+  letterCheck,
   letterList,
   setChangeLetterModalOpen,
 }) {
   const [checkModal, setCheckModal] = useState(false);
-  const [name, setName] = useState(letter.name);
-  const [content, setContent] = useState(letter.letter);
+  const [content, setContent] = useState(letterCheck.content);
   const checkBtnRef = useRef();
-
-  const nameChangeEvent = (event) => {
-    setName(event.target.value);
-  };
 
   const letterChangeEvent = (event) => {
     setContent(event.target.value);
@@ -35,11 +29,7 @@ function ChangeLetterModal({
       <ModalBackground>
         <ChangeLetter>
           <ChangeTitle>내용 수정하기</ChangeTitle>
-          <ChangeInputName
-            type="text"
-            value={name}
-            onChange={nameChangeEvent}
-          />
+          <UserName>이름 : {letterCheck.nickname}</UserName>
           <ChangeInputLetter
             type="textarea"
             value={content}
@@ -62,12 +52,10 @@ function ChangeLetterModal({
       </ModalBackground>
       {checkModal && (
         <ChangeLetterCheckModal
+          letterCheck={letterCheck}
           checkContent={checkContent}
           setCheckModal={setCheckModal}
-          name={name}
           content={content}
-          setLetter={setLetter}
-          letter={letter}
           letterList={letterList}
           setChangeLetterModalOpen={setChangeLetterModalOpen}
           checkBtnRef={checkBtnRef.current}
@@ -114,14 +102,10 @@ const ChangeTitle = styled.h2`
   height: 30px;
 `;
 
-const ChangeInputName = styled.input`
-  border-width: 0px;
-  border: 1px solid black;
-  border-radius: 10px;
-  min-height: 30px;
-  height: auto;
-  width: 98%;
-  margin: 0px auto 10px auto;
+const UserName = styled.label`
+  text-align: center;
+  margin: 5px;
+  font-size: 18px;
 `;
 
 const ChangeInputLetter = styled.textarea`

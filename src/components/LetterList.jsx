@@ -1,14 +1,25 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { __initializationLetterList } from "../redux/modules/letters";
 // import { getFormattedDate } from "util/date";
 
 function LetterList({ foundData, checkArtist }) {
-  const letterList = useSelector((state) => state.letters.letterList);
+  const { letterList, isLetterLoading } = useSelector((state) => state.letters);
+  const dispatch = useDispatch();
 
-  const filteredLetterList = letterList.filter(
-    (i) => i.title === foundData.artist && i.artist === checkArtist
-  );
+  useEffect(() => {
+    dispatch(__initializationLetterList());
+  }, []);
+
+  const filteredLetterList = letterList.filter((i) => {
+    return i.title === foundData.artist && i.writedTo === checkArtist;
+  });
+
+  if (isLetterLoading) {
+    return <div>로딩 중입니다....</div>;
+  }
   return (
     <>
       <ListTitle>LetterList</ListTitle>

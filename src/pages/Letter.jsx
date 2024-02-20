@@ -13,10 +13,11 @@ function Letter() {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error } = useSelector((state) => state.user);
+  const { isLoading, error } = useSelector((state) => state.user);
+  const check = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    dispatch(__initialization());
+    dispatch(__initialization(check));
   }, []);
 
   const foundData = data.find((i) => {
@@ -32,6 +33,10 @@ function Letter() {
   const [backgroundImage, setBackgroundImage] = useState(
     artistList[0].backgroundImage
   );
+
+  if (isLoading) {
+    return <div>로딩 중입니다.</div>;
+  }
 
   if (error) {
     return navigate("/login");

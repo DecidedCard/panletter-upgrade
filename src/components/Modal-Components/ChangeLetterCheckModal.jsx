@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import Button from "components/Button";
-import { updateLetterList } from "../../redux/modules/letters";
+import { __updateLetterList } from "../../redux/modules/letters";
 
 function ChangeLetterCheckModal({
   checkContent,
   setCheckModal,
   name,
   content,
-  setLetter,
-  letter,
+  letterCheck,
   letterList,
   setChangeLetterModalOpen,
   checkBtnRef,
@@ -17,23 +16,16 @@ function ChangeLetterCheckModal({
   const dispatch = useDispatch();
 
   const rerender = () => {
-    const newLetterList = letterList.map((i) => {
-      if (i.id === letter.id) {
-        return { ...i, name, letter: content };
-      }
-      return { ...i };
-    });
-    dispatch(updateLetterList(newLetterList));
+    const newLetter = { ...letterCheck, content };
+    dispatch(__updateLetterList(newLetter));
   };
 
   const onClickHandler = (check) => {
     if (checkBtnRef === true && check === true) {
-      if (name === "" || content === "") {
+      if (content === "") {
         alert("내용을 입력해주세요");
         return;
       }
-      const newLetter = { ...letter, name: name, letter: content };
-      setLetter({ ...newLetter });
       rerender();
       setChangeLetterModalOpen(false);
       setCheckModal(false);

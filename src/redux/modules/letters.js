@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addLetter } from "api/fetchLetter";
+import { addLetter, checkLetterList, updateLetter } from "api/fetchLetter";
 
 const checkKey = localStorage.key(1);
 const check = [];
@@ -8,16 +8,43 @@ if (checkKey) {
 }
 
 const initialState = {
-  letterList: check,
-  isLoading: false,
+  letterList: [],
+  isLetterLoading: false,
+  isLetterError: false,
   error: null,
 };
+
+export const __initializationLetterList = createAsyncThunk(
+  "__initializationLetterList",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await checkLetterList();
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const __addLetterList = createAsyncThunk(
   "addLetterList",
   async (payload, thunkAPI) => {
     try {
       const response = await addLetter(payload);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __updateLetterList = createAsyncThunk(
+  "updateLetterList",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await updateLetter(payload);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       console.error(error);
@@ -50,15 +77,54 @@ const lettersSilce = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(__addLetterList.pending, (state, action) => {
-      state.isLoading = true;
+      state.isLetterLoading = true;
+      state.isLetterError = false;
+      state.error = null;
     });
     builder.addCase(__addLetterList.fulfilled, (state, action) => {
-      state.isLoading = false;
+      state.isLetterLoading = false;
+      state.isLetterError = false;
+      state.letterList = [action.payload, ...state.letterList];
+      localStorage.setItem(
+        "letterList",
+        JSON.stringify([action.payload, ...state.letterList])
+      );
+    });
+    builder.addCase(__addLetterList.rejected, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = true;
+      state.error = action.payload;
+    });
+    builder.addCase(__initializationLetterList.pending, (state, action) => {
+      state.isLetterLoading = true;
+      state.isLetterError = false;
+      state.error = null;
+    });
+    builder.addCase(__initializationLetterList.fulfilled, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = false;
       state.letterList = action.payload;
       localStorage.setItem("letterList", JSON.stringify([action.payload]));
     });
-    builder.addCase(__addLetterList.rejected, (state, action) => {
-      state.isLoading = false;
+    builder.addCase(__initializationLetterList.rejected, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = true;
+      state.error = action.payload;
+    });
+    builder.addCase(__updateLetterList.pending, (state, action) => {
+      state.isLetterLoading = true;
+      state.isLetterError = false;
+      state.error = null;
+    });
+    builder.addCase(__updateLetterList.fulfilled, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = false;
+      state.letterList = [action.payload];
+      localStorage.setItem("letterList", JSON.stringify([action.payload]));
+    });
+    builder.addCase(__updateLetterList.rejected, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = true;
       state.error = action.payload;
     });
   },

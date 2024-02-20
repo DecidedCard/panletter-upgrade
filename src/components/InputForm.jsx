@@ -12,7 +12,6 @@ function InputForm({ foundData, foundArtist }) {
   const dispatch = useDispatch();
   const [artist, setArtist] = useState(foundArtist[0].name);
   const { user } = useSelector((state) => state.user);
-  console.log(user);
 
   // 등록 버튼
   const addBtn = (event) => {
