@@ -1,0 +1,31 @@
+{
+  "letters": [
+    {
+      "id": "74f9988a-1497-4040-abca-edaea596c7d7",
+      "createdAt": "24. 02. 20. 오전 11:15",
+      "title": "방탄소년단",
+      "nickname": "백한",
+      "avatar": null,
+      "content": "잘 부탁드립니다",
+      "writedTo": "정국",
+      "userId": "qube7089"
+    },
+    {
+      "id": "bbb0d942-e928-4230-a973-2059c0c004a5",
+      "createdAt": "24. 02. 20. 오전 11:17",
+      "title": "방탄소년단",
+      "nickname": "백한",
+      "avatar": null,
+      "content": "잘 부탁드립니다.",
+      "writedTo": "정국",
+      "userId": "qube7089"
+    },
+    {
+      "id": "a4cc7a91-44f5-430f-a319-eed5fdcc8920",
+      "createdAt": "24. 02. 20. 오전 11:18",
+      "title": "방탄소년단",
+      "content": "잘 부탁드립니다.",
+      "writedTo": "정국"
+    }
+  ]
+}
