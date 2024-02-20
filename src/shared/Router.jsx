@@ -3,6 +3,7 @@ import Home from "pages/Home";
 import Letter from "pages/Letter";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
+import UserProfile from "pages/UserProfile";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 const Router = () => {
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="letter/:id" element={<Letter />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/userProfile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );
