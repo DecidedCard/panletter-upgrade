@@ -38,7 +38,7 @@ const Slide = () => {
 
 export default Slide;
 
-const ImageBox = styled.div`
+const ImageBox = styled.section`
   background-color: rgb(112, 119, 161, 0.5);
   margin: 10px auto 10px auto;
   border-radius: 8px;
