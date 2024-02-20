@@ -19,9 +19,7 @@ function Login() {
     try {
       const { data } = await login(checkUser);
       localStorage.setItem("accessToken", data.accessToken);
-      setTimeout(() => {
-        navigate("/");
-      }, 400);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
