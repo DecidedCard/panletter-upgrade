@@ -10,9 +10,10 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.user);
+  const check = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    dispatch(__initialization());
+    dispatch(__initialization(check));
   }, []);
 
   if (isLoading) {

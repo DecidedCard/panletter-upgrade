@@ -11,9 +11,8 @@ const initialState = {
 export const __initialization = createAsyncThunk(
   "initialization",
   async (payload, thunkAPI) => {
-    const check = localStorage.getItem("accessToken");
     try {
-      const response = await checkUser(check);
+      const response = await checkUser(payload);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       console.error(error);
@@ -34,6 +33,7 @@ const userSilce = createSlice({
     builder.addCase(__initialization.pending, (state, action) => {
       state.isLoading = true;
       state.isError = false;
+      state.error = null;
     });
     builder.addCase(__initialization.fulfilled, (state, action) => {
       state.isLoading = false;
