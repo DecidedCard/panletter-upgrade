@@ -1,24 +1,14 @@
 {
   "letters": [
     {
-      "id": "b73a699b-f4dc-47cc-92b7-efacd66f6f5d",
-      "createdAt": "24. 02. 20. 오후 12:01",
-      "title": "방탄소년단",
-      "nickname": "백한",
-      "avatar": null,
-      "content": "잘 부탁드립니다.",
-      "writedTo": "정국",
-      "userId": "qube7089"
-    },
-    {
-      "id": "b70deac0-c514-46ac-abe6-e53bd36f55e7",
-      "createdAt": "24. 02. 20. 오후 02:50",
-      "title": "방탄소년단",
+      "id": "3f2e865c-41fd-42d7-a4d3-bcf820b63b00",
+      "createdAt": "24. 02. 20. 오후 09:23",
+      "title": "aespa",
       "nickname": "정해준",
-      "avatar": null,
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-20/c467c679-2e24-4601-a81c-f1fff4fc1942.jpg",
       "content": "잘 부탁드립니다.",
-      "writedTo": "슈가",
-      "userId": "asada7931"
+      "writedTo": "카리나",
+      "userId": "qube7089"
     }
   ]
 }

@@ -34,3 +34,19 @@ export const checkUser = async (accessToken) => {
     return Promise.reject(error);
   }
 };
+
+export const editProfile = async (edit) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await jwt.patch("/profile", edit, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    Promise.reject(error);
+  }
+};

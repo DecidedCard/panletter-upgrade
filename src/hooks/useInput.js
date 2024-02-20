@@ -1,8 +1,8 @@
 const { useState } = require("react");
 
-const useInput = () => {
+const useInput = (check) => {
   // state
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(check);
 
   // handler
   const handler = (e) => {
