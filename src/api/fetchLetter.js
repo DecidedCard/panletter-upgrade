@@ -29,3 +29,13 @@ export const updateLetter = async (letter) => {
     Promise.reject(error);
   }
 };
+
+export const deleteLetters = async (id) => {
+  try {
+    const response = await letters.delete(`/letters/${id}`);
+    return response;
+  } catch (error) {
+    console.error(error);
+    Promise.reject(error);
+  }
+};

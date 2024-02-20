@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addLetter, checkLetterList, updateLetter } from "api/fetchLetter";
+import {
+  addLetter,
+  checkLetterList,
+  deleteLetters,
+  updateLetter,
+} from "api/fetchLetter";
 
 const checkKey = localStorage.key(1);
 const check = [];
@@ -53,21 +58,23 @@ export const __updateLetterList = createAsyncThunk(
   }
 );
 
+export const __deleteLetter = createAsyncThunk(
+  "deleteLetter",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await deleteLetters(payload);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const lettersSilce = createSlice({
   name: "letters",
   initialState,
   reducers: {
-    addLetterList: (state, action) => {
-      return {
-        letterList: [action.payload, ...state.letterList],
-      };
-    },
-    updateLetterList: (state, action) => {
-      localStorage.setItem("letterList", JSON.stringify([...action.payload]));
-      return {
-        letterList: [...action.payload],
-      };
-    },
     deleteLetter: (state, action) => {
       localStorage.setItem("letterList", JSON.stringify([...action.payload]));
       return {
@@ -85,10 +92,6 @@ const lettersSilce = createSlice({
       state.isLetterLoading = false;
       state.isLetterError = false;
       state.letterList = [action.payload, ...state.letterList];
-      localStorage.setItem(
-        "letterList",
-        JSON.stringify([action.payload, ...state.letterList])
-      );
     });
     builder.addCase(__addLetterList.rejected, (state, action) => {
       state.isLetterLoading = false;
@@ -104,7 +107,6 @@ const lettersSilce = createSlice({
       state.isLetterLoading = false;
       state.isLetterError = false;
       state.letterList = action.payload;
-      localStorage.setItem("letterList", JSON.stringify([action.payload]));
     });
     builder.addCase(__initializationLetterList.rejected, (state, action) => {
       state.isLetterLoading = false;
@@ -120,9 +122,23 @@ const lettersSilce = createSlice({
       state.isLetterLoading = false;
       state.isLetterError = false;
       state.letterList = [action.payload];
-      localStorage.setItem("letterList", JSON.stringify([action.payload]));
     });
     builder.addCase(__updateLetterList.rejected, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = true;
+      state.error = action.payload;
+    });
+    builder.addCase(__deleteLetter.pending, (state, action) => {
+      state.isLetterLoading = true;
+      state.isLetterError = false;
+      state.error = null;
+    });
+    builder.addCase(__deleteLetter.fulfilled, (state, action) => {
+      state.isLetterLoading = false;
+      state.isLetterError = false;
+      state.letterList = [action.payload];
+    });
+    builder.addCase(__deleteLetter.rejected, (state, action) => {
       state.isLetterLoading = false;
       state.isLetterError = true;
       state.error = action.payload;
