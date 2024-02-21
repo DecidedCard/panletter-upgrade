@@ -6,10 +6,8 @@ import { __updateLetterList } from "../../redux/modules/letters";
 function ChangeLetterCheckModal({
   checkContent,
   setCheckModal,
-  name,
   content,
   letterCheck,
-  letterList,
   setChangeLetterModalOpen,
   checkBtnRef,
 }) {

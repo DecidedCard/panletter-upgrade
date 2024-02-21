@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { __initializationLetterList } from "../redux/modules/letters";
-// import { getFormattedDate } from "util/date";
 
 function LetterList({ foundData, checkArtist }) {
   const { letterList, isLetterLoading } = useSelector((state) => state.letters);
@@ -12,6 +11,7 @@ function LetterList({ foundData, checkArtist }) {
   useEffect(() => {
     dispatch(__initializationLetterList());
   }, []);
+  console.log(letterList);
 
   const filteredLetterList = letterList.filter((i) => {
     return i.title === foundData.artist && i.writedTo === checkArtist;

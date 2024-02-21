@@ -1,23 +1,23 @@
 {
   "letters": [
     {
-      "id": "3f2e865c-41fd-42d7-a4d3-bcf820b63b00",
-      "createdAt": "24. 02. 20. 오후 09:23",
+      "id": "4ca713ce-8b76-4396-92fc-f4d6ed2a7b0c",
+      "createdAt": "24. 02. 21. 오후 03:41",
       "title": "aespa",
       "nickname": "정해준",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-20/c467c679-2e24-4601-a81c-f1fff4fc1942.jpg",
-      "content": "잘 부탁드립니다.",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/25e62f40-b9a2-4840-a355-b682ac2c6d16.jpg",
+      "content": "짜증나",
       "writedTo": "카리나",
       "userId": "qube7089"
     },
     {
-      "id": "4a4599e6-b524-4404-963e-4d5c9bbb6738",
-      "createdAt": "24. 02. 21. 오전 10:13",
-      "title": "NewJeans",
+      "id": "153085f1-cedd-4dc5-9ef6-77788801bebc",
+      "createdAt": "24. 02. 21. 오후 03:53",
+      "title": "방탄소년단",
       "nickname": "정해준",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-20/c467c679-2e24-4601-a81c-f1fff4fc1942.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/17bf64d4-3887-412f-b890-d7a9e9577ec7.jpg",
       "content": "잘 부탁드립니다.",
-      "writedTo": "다니엘",
+      "writedTo": "정국",
       "userId": "qube7089"
     }
   ]

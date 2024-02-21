@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import { useDispatch } from "react-redux";
-import { __deleteLetter, deleteLetter } from "../../redux/modules/letters";
+import { __deleteLetter } from "../../redux/modules/letters";
 
 function DeleteCheckModal({
   setDeleteCheckModalOpen,
@@ -10,13 +10,11 @@ function DeleteCheckModal({
   letterList,
   letterCheck,
 }) {
+  console.log(letterList);
   const dispatch = useDispatch();
   const checkBtn = (boolean, id) => {
     if (boolean) {
       goBack();
-      // const newLetterList = letterList.filter((i) => {
-      //   return i.id !== id;
-      // });
       dispatch(__deleteLetter(id));
       setDeleteCheckModalOpen(false);
     }
