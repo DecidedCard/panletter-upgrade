@@ -1,3 +1,24 @@
 {
-  "letters": []
+  "letters": [
+    {
+      "id": "6f93a6ee-b5fc-4086-a2b0-41cbb5fe556b",
+      "createdAt": "24. 02. 21. 오후 04:08",
+      "title": "aespa",
+      "nickname": "백한",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/c557da0d-dc7d-43f3-9636-e52e05754239.jpg",
+      "content": "잘 부탁드립니다.\n",
+      "writedTo": "카리나",
+      "userId": "qube7089"
+    },
+    {
+      "id": "ea3f890a-50ff-4a6c-99bd-702eff8f40d8",
+      "createdAt": "24. 02. 21. 오후 07:49",
+      "title": "방탄소년단",
+      "nickname": "백한",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/6fc2bed3-e4f9-47a2-b978-ff5ff1fa7a87.jpg",
+      "content": "잘 부탁드립니다\n",
+      "writedTo": "정국",
+      "userId": "qube7089"
+    }
+  ]
 }

@@ -11,7 +11,6 @@ function LetterList({ foundData, checkArtist }) {
   useEffect(() => {
     dispatch(__initializationLetterList());
   }, []);
-  console.log(letterList);
 
   const filteredLetterList = letterList.filter((i) => {
     return i.title === foundData.artist && i.writedTo === checkArtist;
