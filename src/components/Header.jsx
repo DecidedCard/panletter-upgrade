@@ -1,50 +1,63 @@
-import React from "react";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { data } from "shared/data";
-import Button from "components/Button";
+import styled from "styled-components";
+import basicAvatar from "assets/image/basicavatar.jpg";
 
 function Header() {
+  const { user } = useSelector((state) => state.user);
+
   return (
-    <header>
-      <HeadTitle>아티스트 팬레터</HeadTitle>
-      <Section>
-        {data.map((i) => {
-          return (
-            <h2 key={i.id}>
-              <Link to={`letter/${i.id}`} style={{ textDecoration: "none" }}>
-                <Button
-                  content={i.artist}
-                  backgroundColor={"rgb(112, 119, 161, 0.7)"}
-                  width={"auto"}
-                />
-              </Link>
-            </h2>
-          );
-        })}
-      </Section>
-    </header>
+    <HeaderMain>
+      <LinkStyle to={"/"}>
+        <GroupCheckTitle>아티스트 팬레터</GroupCheckTitle>
+      </LinkStyle>
+      <UserProfile to={"/userProfile"}>
+        <p>{user.nickname}</p>
+        <UserProfileImage
+          src={user.avatar ? user.avatar : basicAvatar}
+          alt="유저 프로필 이미지 입니다."
+        />
+      </UserProfile>
+    </HeaderMain>
   );
 }
 
 export default Header;
 
-const HeadTitle = styled.h1`
-  background-color: rgb(66, 71, 105, 0.5);
+const HeaderMain = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 8px;
-  height: 50px;
-  font-size: large;
-  font-weight: bold;
-  margin: 5px;
+  margin: 1% 1%;
+  padding: 1%;
+  border-radius: 12px;
+  background-color: rgb(66, 71, 105, 0.7);
+  width: 98%;
+  height: 60px;
 `;
 
-const Section = styled.section`
+const LinkStyle = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
+const GroupCheckTitle = styled.h1`
+  font-size: large;
+  font-weight: bold;
+`;
+
+const UserProfile = styled(Link)`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  height: 30px;
+  width: 30%;
+  height: 100%;
+  color: black;
+  text-decoration: none;
+`;
+
+const UserProfileImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;

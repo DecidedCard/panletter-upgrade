@@ -5,7 +5,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import { Component } from "react";
 import { imageData } from "shared/data";
 import styled from "styled-components";
 
@@ -39,7 +38,7 @@ const Slide = () => {
 
 export default Slide;
 
-const ImageBox = styled.div`
+const ImageBox = styled.section`
   background-color: rgb(112, 119, 161, 0.5);
   margin: 10px auto 10px auto;
   border-radius: 8px;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 function Button({
+  type,
   content,
   backgroundColor,
   onClick,
@@ -11,6 +12,7 @@ function Button({
 }) {
   return (
     <MainButton
+      type={type}
       $backgroundColor={backgroundColor}
       $height={height}
       $width={width}

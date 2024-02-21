@@ -2,22 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import { useDispatch } from "react-redux";
-import { deleteLetter } from "../../redux/modules/letters";
+import { __deleteLetter, deleteLetter } from "../../redux/modules/letters";
 
 function DeleteCheckModal({
   setDeleteCheckModalOpen,
   goBack,
   letterList,
-  letter,
+  letterCheck,
 }) {
   const dispatch = useDispatch();
   const checkBtn = (boolean, id) => {
     if (boolean) {
       goBack();
-      const newLetterList = letterList.filter((i) => {
-        return i.id !== id;
-      });
-      dispatch(deleteLetter(newLetterList));
+      // const newLetterList = letterList.filter((i) => {
+      //   return i.id !== id;
+      // });
+      dispatch(__deleteLetter(id));
       setDeleteCheckModalOpen(false);
     }
     setDeleteCheckModalOpen(false);
@@ -27,7 +27,10 @@ function DeleteCheckModal({
       <ModalStyle>
         <p>삭제하시겠습니까?</p>
         <BtnDiv>
-          <Button content={"확인"} onClick={() => checkBtn(true, letter.id)} />
+          <Button
+            content={"확인"}
+            onClick={() => checkBtn(true, letterCheck.id)}
+          />
           <Button content={"취소"} onClick={() => checkBtn(false)} />
         </BtnDiv>
       </ModalStyle>
