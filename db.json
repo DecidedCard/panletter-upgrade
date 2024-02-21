@@ -1,24 +1,3 @@
 {
-  "letters": [
-    {
-      "id": "4ca713ce-8b76-4396-92fc-f4d6ed2a7b0c",
-      "createdAt": "24. 02. 21. 오후 03:41",
-      "title": "aespa",
-      "nickname": "정해준",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/25e62f40-b9a2-4840-a355-b682ac2c6d16.jpg",
-      "content": "짜증나",
-      "writedTo": "카리나",
-      "userId": "qube7089"
-    },
-    {
-      "id": "153085f1-cedd-4dc5-9ef6-77788801bebc",
-      "createdAt": "24. 02. 21. 오후 03:53",
-      "title": "방탄소년단",
-      "nickname": "정해준",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/17bf64d4-3887-412f-b890-d7a9e9577ec7.jpg",
-      "content": "잘 부탁드립니다.",
-      "writedTo": "정국",
-      "userId": "qube7089"
-    }
-  ]
+  "letters": []
 }
