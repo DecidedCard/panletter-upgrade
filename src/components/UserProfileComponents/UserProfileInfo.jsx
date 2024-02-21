@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __initialization } from "../../redux/modules/user";
 import styled from "styled-components";
+import basicAvatar from "assets/image/basicavatar.jpg";
 
 function UserProfileInfo({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);
@@ -20,7 +21,7 @@ function UserProfileInfo({ setChangeCheck }) {
     <Main>
       <UserProfileBox>
         <div>
-          <ProfileImage src={user.avatar} />
+          <ProfileImage src={user.avatar ? user.avatar : basicAvatar} />
         </div>
         <div>
           <label>{user.nickname}</label>

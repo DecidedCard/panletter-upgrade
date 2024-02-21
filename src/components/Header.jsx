@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import basicAvatar from "assets/image/basicavatar.jpg";
 
 function Header() {
   const { user } = useSelector((state) => state.user);
@@ -12,7 +13,10 @@ function Header() {
       </LinkStyle>
       <UserProfile to={"/userProfile"}>
         <p>{user.nickname}</p>
-        <UserProfileImage src={user.avatar} alt="유저 프로필 이미지 입니다." />
+        <UserProfileImage
+          src={user.avatar ? user.avatar : basicAvatar}
+          alt="유저 프로필 이미지 입니다."
+        />
       </UserProfile>
     </HeaderMain>
   );
