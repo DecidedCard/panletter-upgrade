@@ -17,6 +17,7 @@ function EditProfile({ setChangeCheck }) {
   const [previewImg, setPreviewImg] = useState(null);
   const [changeName, onChangeName] = useInput(user.nickname);
   const dispatch = useDispatch();
+  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     dispatch(__initializationLetterList());
@@ -47,6 +48,7 @@ function EditProfile({ setChangeCheck }) {
   };
 
   const profileChangeEvent = () => {
+    console.log(selectedFile);
     if (selectedFile) {
       formData.append("avatar", selectedFile);
     }
@@ -55,9 +57,8 @@ function EditProfile({ setChangeCheck }) {
     }
     dispatch(__updateProfile(formData));
     letterNameChange();
-    const accessTocken = localStorage.getItem("accessToken");
-    dispatch(__initialization(accessTocken));
     setChangeCheck(false);
+    dispatch(__initialization(accessToken));
   };
 
   const cancleEvent = () => {
@@ -129,6 +130,7 @@ const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 const ImageInput = styled.input`

@@ -1,17 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addLetter,
-  changeNameLetters,
   checkLetterList,
   deleteLetters,
   updateLetter,
 } from "api/fetchLetter";
-
-const checkKey = localStorage.key(1);
-const check = [];
-if (checkKey) {
-  check.push(...JSON.parse(localStorage.getItem(checkKey)));
-}
 
 const initialState = {
   letterList: [],
@@ -75,7 +68,14 @@ export const __deleteLetter = createAsyncThunk(
 const lettersSilce = createSlice({
   name: "letters",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteLetter: (state, action) => {
+      localStorage.setItem("letterList", JSON.stringify([...action.payload]));
+      return {
+        letterList: [...action.payload],
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(__addLetterList.pending, (state, action) => {
       state.isLetterLoading = true;
@@ -84,6 +84,10 @@ const lettersSilce = createSlice({
     builder.addCase(__addLetterList.fulfilled, (state, action) => {
       state.isLetterLoading = false;
       state.letterList = [action.payload, ...state.letterList];
+      localStorage.setItem(
+        "letterList",
+        JSON.stringify([action.payload, ...state.letterList])
+      );
     });
     builder.addCase(__addLetterList.rejected, (state, action) => {
       state.isLetterLoading = false;

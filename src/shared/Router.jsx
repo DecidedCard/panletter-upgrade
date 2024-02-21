@@ -2,7 +2,7 @@ import Detail from "pages/Detail";
 import Home from "pages/Home";
 import Letter from "pages/Letter";
 import Login from "pages/Login";
-import Signup from "pages/Signup";
+import Signup from "pages/SignCheck";
 import UserProfile from "pages/UserProfile";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 

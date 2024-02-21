@@ -1,18 +1,11 @@
 import Button from "components/Button";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __initialization } from "../../redux/modules/user";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import basicAvatar from "assets/image/basicavatar.jpg";
 
 function UserProfileInfo({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const accessTocken = localStorage.getItem("accessToken");
-    dispatch(__initialization(accessTocken));
-  }, []);
+  console.log(user);
 
   const onClickHandler = () => {
     setChangeCheck(true);
