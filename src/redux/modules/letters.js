@@ -59,19 +59,6 @@ export const __updateLetterList = createAsyncThunk(
   }
 );
 
-export const __changeNameLetterList = createAsyncThunk(
-  "changeNameLetterList",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await changeNameLetters(payload);
-      return thunkAPI.fulfillWithValue(response.data);
-    } catch (error) {
-      console.error(error);
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
 export const __deleteLetter = createAsyncThunk(
   "deleteLetter",
   async (payload, thunkAPI) => {
@@ -123,18 +110,6 @@ const lettersSilce = createSlice({
       state.letterList = [action.payload];
     });
     builder.addCase(__updateLetterList.rejected, (state, action) => {
-      state.isLetterLoading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(__changeNameLetterList.pending, (state, action) => {
-      state.isLetterLoading = true;
-      state.error = null;
-    });
-    builder.addCase(__changeNameLetterList.fulfilled, (state, action) => {
-      state.isLetterLoading = false;
-      state.letterList = [action.payload];
-    });
-    builder.addCase(__changeNameLetterList.rejected, (state, action) => {
       state.isLetterLoading = false;
       state.error = action.payload;
     });

@@ -5,7 +5,6 @@ import Button from "components/Button";
 import useInput from "hooks/useInput";
 import { __initialization, __updateProfile } from "../../redux/modules/user";
 import {
-  __changeNameLetterList,
   __initializationLetterList,
   __updateLetterList,
 } from "../../redux/modules/letters";
@@ -36,19 +35,18 @@ function EditProfile({ setChangeCheck }) {
     fileRead.readAsDataURL(e.target.files[0]);
   };
   const formData = new FormData();
-  console.log(user);
 
   const letterNameChange = () => {
-    const checkLetterList = letterList.map((item) => {
-      if (item.userId === user.id) {
-        return { ...item, nickname: changeName };
+    letterList.map((e) => {
+      if (e.userId === user.id) {
+        const newLetter = { ...e, nickname: changeName };
+        return dispatch(__updateLetterList(newLetter));
       }
-      return item;
+      return e;
     });
   };
 
   const profileChangeEvent = () => {
-    const accessToken = localStorage.getItem("accessToken");
     if (selectedFile) {
       formData.append("avatar", selectedFile);
     }
@@ -57,7 +55,8 @@ function EditProfile({ setChangeCheck }) {
     }
     dispatch(__updateProfile(formData));
     letterNameChange();
-    dispatch(__initialization(accessToken));
+    const accessTocken = localStorage.getItem("accessToken");
+    dispatch(__initialization(accessTocken));
     setChangeCheck(false);
   };
 

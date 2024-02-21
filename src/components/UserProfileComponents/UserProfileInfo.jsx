@@ -1,9 +1,17 @@
 import Button from "components/Button";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __initialization } from "../../redux/modules/user";
 import styled from "styled-components";
 
 function UserProfileInfo({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const accessTocken = localStorage.getItem("accessToken");
+    dispatch(__initialization(accessTocken));
+  }, []);
 
   const onClickHandler = () => {
     setChangeCheck(true);

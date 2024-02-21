@@ -60,7 +60,6 @@ const userSilce = createSlice({
     });
     builder.addCase(__updateProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload;
     });
     builder.addCase(__updateProfile.rejected, (state, action) => {
       state.isLoading = false;

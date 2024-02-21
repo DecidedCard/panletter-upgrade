@@ -30,16 +30,6 @@ export const updateLetter = async (letter) => {
   }
 };
 
-export const changeNameLetters = async (letterList) => {
-  try {
-    const response = await letters.patch("/letter", letterList);
-    return response;
-  } catch (error) {
-    console.error(error);
-    Promise.reject(error);
-  }
-};
-
 export const deleteLetters = async (id) => {
   try {
     const response = await letters.delete(`/letters/${id}`);
