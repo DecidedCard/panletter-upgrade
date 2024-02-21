@@ -48,7 +48,6 @@ function EditProfile({ setChangeCheck }) {
   };
 
   const profileChangeEvent = () => {
-    console.log(selectedFile);
     if (selectedFile) {
       formData.append("avatar", selectedFile);
     }
