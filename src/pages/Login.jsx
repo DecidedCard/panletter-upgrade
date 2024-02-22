@@ -13,7 +13,7 @@ function Login() {
   const { error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (error) {
+    if (error && localStorage.getItem("accessToken")) {
       alert("토큰 인증이 만료 되었습니다.");
     }
   }, []);
