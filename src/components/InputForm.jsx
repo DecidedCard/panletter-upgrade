@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CheckModal from "components/Modal-Components/CheckModal";
 import Button from "components/Button";
 import { v4 as uuidv4 } from "uuid";
-import { __addLetterList } from "../redux/modules/letters";
+import { __addLetterList } from "../redux/modules/letterSlice";
 import { getFormattedDate } from "util/date";
 
 function InputForm({ foundData, foundArtist }) {

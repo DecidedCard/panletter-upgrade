@@ -4,7 +4,7 @@ import Header from "components/Header";
 import GroupCheck from "components/HomeComponents/GroupCheck";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { __initialization } from "../redux/modules/user";
+import { __initialization } from "../redux/modules/userSlice";
 
 function Home() {
   const { isLoading, error } = useSelector((state) => state.user);

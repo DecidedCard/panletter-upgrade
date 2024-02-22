@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "components/Button";
 import useInput from "hooks/useInput";
-import { __updateProfile } from "../../redux/modules/user";
+import { __updateProfile } from "../../redux/modules/userSlice";
 import {
   __initializationLetterList,
   __updateLetterList,
-} from "../../redux/modules/letters";
+} from "../../redux/modules/letterSlice";
 
 function EditProfile({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);

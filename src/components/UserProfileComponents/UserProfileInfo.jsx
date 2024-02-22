@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import basicAvatar from "assets/image/basicavatar.jpg";
 import { useEffect } from "react";
-import { __initialization } from "../../redux/modules/user";
+import { __initialization } from "../../redux/modules/userSlice";
 
 function UserProfileInfo({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);

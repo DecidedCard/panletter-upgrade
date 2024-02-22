@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import Button from "components/Button";
-import { __updateLetterList } from "../../redux/modules/letters";
+import { __updateLetterList } from "../../redux/modules/letterSlice";
 
 function ChangeLetterCheckModal({
   checkContent,

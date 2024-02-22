@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { __initializationLetterList } from "../redux/modules/letters";
+import { __initializationLetterList } from "../redux/modules/letterSlice";
 
 function LetterList({ foundData, checkArtist }) {
   const { letterList, isLetterLoading } = useSelector((state) => state.letters);

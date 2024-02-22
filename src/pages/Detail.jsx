@@ -5,8 +5,8 @@ import styled from "styled-components";
 import ChangeLetterModal from "components/Modal-Components/ChangeLetterModal";
 import Button from "components/Button";
 import DeleteCheckModal from "components/Modal-Components/DeleteCheckModal";
-import { __initialization } from "../redux/modules/user";
-import { __initializationLetterList } from "../redux/modules/letters";
+import { __initialization } from "../redux/modules/userSlice";
+import { __initializationLetterList } from "../redux/modules/letterSlice";
 import Header from "components/Header";
 
 function Detail() {

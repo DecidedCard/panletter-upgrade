@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import { useDispatch } from "react-redux";
-import { __deleteLetter } from "../../redux/modules/letters";
+import { __deleteLetter } from "../../redux/modules/letterSlice";
 
 function DeleteCheckModal({
   setDeleteCheckModalOpen,

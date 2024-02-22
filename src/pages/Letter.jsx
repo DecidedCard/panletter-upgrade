@@ -4,7 +4,7 @@ import LetterList from "components/LetterList";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { __initialization } from "../redux/modules/user";
+import { __initialization } from "../redux/modules/userSlice";
 import { data, artistData } from "shared/data";
 import styled from "styled-components";
 import Header from "components/Header";

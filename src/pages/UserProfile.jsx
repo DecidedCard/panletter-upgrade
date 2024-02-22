@@ -3,7 +3,7 @@ import UserProfileInfo from "components/UserProfileComponents/UserProfileInfo";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __initialization } from "../redux/modules/user";
+import { __initialization } from "../redux/modules/userSlice";
 import EditProfile from "components/UserProfileComponents/EditProfile";
 
 function UserProfile() {
