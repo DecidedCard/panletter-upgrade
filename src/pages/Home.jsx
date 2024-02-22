@@ -21,6 +21,7 @@ function Home() {
   }
 
   if (error) {
+    alert("토큰인증 시간이 만료 되었습니다.");
     return navigate("/login");
   }
 

@@ -9,7 +9,8 @@ import {
   __updateLetterList,
 } from "../../redux/modules/letters";
 
-function EditProfile({ setChangeCheck, user }) {
+function EditProfile({ setChangeCheck }) {
+  const { user } = useSelector((state) => state.user);
   const { letterList } = useSelector((state) => state.letters);
   const hiddenFileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -20,7 +21,6 @@ function EditProfile({ setChangeCheck, user }) {
   useEffect(() => {
     dispatch(__initializationLetterList());
   }, []);
-  console.log(user);
 
   const ImageChangeClick = () => {
     hiddenFileInputRef.current.click();

@@ -7,7 +7,7 @@ import { __initialization } from "../redux/modules/user";
 import EditProfile from "components/UserProfileComponents/EditProfile";
 
 function UserProfile() {
-  const { error, user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const check = localStorage.getItem("accessToken");
@@ -18,6 +18,7 @@ function UserProfile() {
   }, []);
 
   if (error) {
+    alert("토큰인증 시간이 만료 되었습니다.");
     return navigate("/login");
   }
   return (
@@ -26,7 +27,7 @@ function UserProfile() {
       {!changeCheck ? (
         <UserProfileInfo setChangeCheck={setChangeCheck} />
       ) : (
-        <EditProfile setChangeCheck={setChangeCheck} user={user} />
+        <EditProfile setChangeCheck={setChangeCheck} />
       )}
     </div>
   );

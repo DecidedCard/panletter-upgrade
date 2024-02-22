@@ -22,6 +22,7 @@ function Signup() {
       await signup(newUser);
     } catch (error) {
       console.error(error);
+      alert(error.response.data.message);
     }
     navigate("/login");
   };

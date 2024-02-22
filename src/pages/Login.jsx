@@ -22,7 +22,7 @@ function Login() {
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert(error.message);
+      alert(error.response.data.message);
     }
   };
   return (
