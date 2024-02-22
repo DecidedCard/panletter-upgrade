@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "components/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useInput from "hooks/useInput";
 import { login } from "api/fetchJWT";
+import { useSelector } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();
   const [id, onChangeIdHandler] = useInput();
   const [password, onChangePasswordHandler] = useInput();
+  const { error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (error) {
+      alert("토큰 인증이 만료 되었습니다.");
+    }
+  }, []);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -25,6 +33,7 @@ function Login() {
       alert(error.response.data.message);
     }
   };
+
   return (
     <LoginMain>
       <LoginContainer onSubmit={onSubmitHandler}>
