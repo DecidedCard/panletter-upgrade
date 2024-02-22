@@ -7,7 +7,7 @@ import { __initialization } from "../redux/modules/user";
 import EditProfile from "components/UserProfileComponents/EditProfile";
 
 function UserProfile() {
-  const { error } = useSelector((state) => state.user);
+  const { error, user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const check = localStorage.getItem("accessToken");
@@ -26,7 +26,7 @@ function UserProfile() {
       {!changeCheck ? (
         <UserProfileInfo setChangeCheck={setChangeCheck} />
       ) : (
-        <EditProfile setChangeCheck={setChangeCheck} />
+        <EditProfile setChangeCheck={setChangeCheck} user={user} />
       )}
     </div>
   );

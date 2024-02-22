@@ -3,31 +3,38 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "components/Button";
 import useInput from "hooks/useInput";
-import { __initialization, __updateProfile } from "../../redux/modules/user";
+import { __updateProfile } from "../../redux/modules/user";
 import {
   __initializationLetterList,
   __updateLetterList,
 } from "../../redux/modules/letters";
 
-function EditProfile({ setChangeCheck }) {
-  const { user } = useSelector((state) => state.user);
+function EditProfile({ setChangeCheck, user }) {
   const { letterList } = useSelector((state) => state.letters);
   const hiddenFileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewImg, setPreviewImg] = useState(null);
   const [changeName, onChangeName] = useInput(user.nickname);
   const dispatch = useDispatch();
-  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     dispatch(__initializationLetterList());
   }, []);
+  console.log(user);
 
   const ImageChangeClick = () => {
     hiddenFileInputRef.current.click();
   };
 
   const ImageHandler = (e) => {
+    // 파일사이즈 체크
+    let maxSize = 1 * 1024 * 1024;
+    let fileSize = e.target.files[0].size;
+
+    if (fileSize > maxSize) {
+      alert("1MB이내의 파일만 가능합니다.");
+      return;
+    }
     setSelectedFile(e.target.files[0]);
     let fileRead = new FileReader();
     fileRead.onload = function () {
@@ -37,7 +44,7 @@ function EditProfile({ setChangeCheck }) {
   };
   const formData = new FormData();
 
-  const letterNameChange = () => {
+  const letterChange = () => {
     letterList.map((e) => {
       if (e.userId === user.id) {
         const newLetter = { ...e, nickname: changeName };
@@ -55,9 +62,10 @@ function EditProfile({ setChangeCheck }) {
       formData.append("nickname", changeName);
     }
     dispatch(__updateProfile(formData));
-    letterNameChange();
-    setChangeCheck(false);
-    dispatch(__initialization(accessToken));
+    letterChange();
+    setTimeout(() => {
+      setChangeCheck(false);
+    }, 500);
   };
 
   const cancleEvent = () => {

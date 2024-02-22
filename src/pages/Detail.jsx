@@ -55,10 +55,6 @@ function Detail() {
     <>
       <MainStyle>
         <Header />
-        <PageMove>
-          <Button content={"이전페이지"} onClick={goBack} width={"90"} />
-          <Button content={"HOME"} onClick={() => navigate("/")} />
-        </PageMove>
         <main>
           <p>당신의 팬레터</p>
           <LetterDetail>
