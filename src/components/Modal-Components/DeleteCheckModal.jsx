@@ -10,7 +10,6 @@ function DeleteCheckModal({
   letterList,
   letterCheck,
 }) {
-  console.log(letterList);
   const dispatch = useDispatch();
   const checkBtn = (boolean, id) => {
     if (boolean) {

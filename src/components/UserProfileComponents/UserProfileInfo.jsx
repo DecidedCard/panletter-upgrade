@@ -5,7 +5,6 @@ import basicAvatar from "assets/image/basicavatar.jpg";
 
 function UserProfileInfo({ setChangeCheck }) {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
 
   const onClickHandler = () => {
     setChangeCheck(true);

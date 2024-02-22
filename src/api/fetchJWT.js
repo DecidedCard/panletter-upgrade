@@ -12,7 +12,7 @@ export const signup = async (data) => {
 
 export const login = async (data) => {
   try {
-    const response = await jwt.post("/login?expiresIn=30m", data);
+    const response = await jwt.post("/login", data);
     return response;
   } catch (error) {
     console.error(error);
