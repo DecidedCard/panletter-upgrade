@@ -4,7 +4,7 @@ import Letter from "pages/Letter";
 import Login from "pages/Login";
 import Signup from "pages/SignCheck";
 import UserProfile from "pages/UserProfile";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 
 const Router = () => {
   return (
@@ -16,6 +16,7 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="*" element={<Navigate replace to={"/"} />} />
       </Routes>
     </BrowserRouter>
   );
